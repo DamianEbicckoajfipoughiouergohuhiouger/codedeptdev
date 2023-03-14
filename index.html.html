@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+
+
+
+
+        <h1 id="ags" data-value="AGS S&T PROGRAMMING DEPARTMENT">AGS S&T PROGRAMMING DEPARTMENT</h1>
+<style>
+html{scroll-behavior: smooth;} 
+h1{
+  color: white;
+  font-size: 5rem;
+  font-family: "Space Mono", monospace;
+}
+</style>
+<script>const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    document.getElementById("ags").onmouseover = event => {
+      let iterations = 0;
+      
+     const interval = setInterval(() => {
+      event.target.innerText = event.target.innerText.split("")
+        .map((letter, index)=> {
+        if(index < iterations){
+          return event.target.dataset.value[index];
+        }
+        
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join("");
+       if(iterations >= event.target.dataset.value.length){ 
+         clearInterval(interval);
+        }
+       iterations += 1 / 2;
+    }, 30);
+    }</script>
+
+
+
+
+
+        <div id="blob"></div>
+   
+        <style>
+            #blob {
+                background-color:white;
+                height: 500px;
+                aspect-ratio: 1;
+                position: absolute;
+                left: 50%;
+                top:50%;
+                translate: -50% -50%;
+                border-radius: 50%;
+                background: linear-gradient(
+                    to right,
+                    aquamarine,
+                    mediumpurple
+                );
+                animation: rotate 60s infinite;
+                filter:blur(200px);
+                opacity: 0.5;
+            }
+            @keyframes rotate{
+                from{
+                    rotate: 0deg;
+                }
+
+                50% {
+                    scale: 1 1.5;
+                }
+
+                to{
+                    rotate: 360deg;
+                }
+            }
+
+
+
+        </style>       
+        
+        <script>
+            const blob = document.getElementById("blob");
+
+            document.body.onpointermove = event => {
+                const {clientX, clientY} = event;
+
+                blob.animate({
+                    left: `${clientX}px`,
+                    top: `${clientY}px`
+                }, { duration: 3000, fill: "forwards" });
+            }
+        </script>
+
+
+
+
+
+
+
+        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+            <img class="image" src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8amFwYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8amFwYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8amFwYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8amFwYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGphcGFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGphcGFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1542640244-7e672d6cef4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGphcGFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" draggable="false" />
+            <img class="image" src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGphcGFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" draggable="false" />
+        </div>
+    </body>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            margin: 0rem;
+            overflow-x: hidden;
+        }
+        #image-track > .image{
+            width: 40vmin;
+            height: 56vmin;
+            object-fit: cover;
+            object-position: 100% 50%;
+
+        }
+
+        #image-track {
+            display: flex;
+            gap: 4vmin;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(0%, -50%);
+            z-index: 3;
+        }
+
+    </style>
+    <Script>
+        const track = document.getElementById("image-track");
+
+        window.onmousedown = e => {
+            track.dataset.mouseDownAt = e.clientX;
+        }
+
+        window.onmouseup = () => {
+            track.dataset.mouseDownAt = "0";
+            track.dataset.prevPercentage = track.dataset.percentage;
+        }
+
+        window.onmousemove = e => {
+            if(track.dataset.mouseDownAt === "0") return;
+
+            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+                  maxDelta = window.innerWidth / 2;
+
+            const percentage = (mouseDelta / maxDelta) *-100;
+            nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
+            nextPercentage = Math.min(nextPercentage, 0);
+            nextPercentage = Math.max(nextPercentage, -100);
+
+
+            track.dataset.percentage= nextPercentage;
+
+            track.animate({
+                transform: `translate(${nextPercentage}%, -50%)`
+            }, { duration: 1200, fill: "forwards"});
+            for(const image of track.getElementsByClassName("image")){
+            image.animate({
+                objectPosition: `${100 + nextPercentage}% center`
+            }, {duration: 1200, fill: "forwards"});
+        }
+        }
+
+
+    </Script>
+
+</html>
